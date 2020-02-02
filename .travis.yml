@@ -1,0 +1,15 @@
+language: python
+branches:
+    only:
+        - master
+python:
+    - "3.6"
+    - "3.7"
+    - "3.8"
+install:
+    - pip install tox-travis
+    - pip install coverage
+script:
+    - tox
+after_success:
+    bash <(curl -s https://codecov.io/bash)
