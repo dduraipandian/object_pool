@@ -1,0 +1,31 @@
+.wy-nav-content{
+   max-width: none !important;
+}
+
+.custom-admonition {
+    background: #f3f6f6!important;
+}
+
+.custom-admonition > .admonition-title{
+    background: #e1e4e5 !important;
+}
+
+div[aria-label='breadcrumbs navigation'] {
+    display: none
+}
+
+h1 {
+    color: #2980B9 !important;
+}
+
+.wy-side-nav-search{
+    background-color: #2980B9 !important;
+}
+
+.toctree-expand{
+    color: green !important;
+}
+
+.wy-side-nav-search input[type=text] {
+    border-radius: 4px !important;
+}
