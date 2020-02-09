@@ -2,57 +2,33 @@
 Readme File
 ===========
 
-.. raw:: html
+.. image:: https://travis-ci.com/dduraipandian/object_pool.svg?token=HYyTsSU9ynxiqecjxoc5&branch=master
+    :target: https://travis-ci.com/dduraipandian/object_pool
+    :alt: Travis CI
 
-    <p align="center">
-      <h3 align="center">ObjectPool</h3>
-      <p align="center">
-        Simple object pool creator for your projects!
-        <br />
-        <a href="https://object-pool.readthedocs.io/"><strong>Explore the docs »</strong></a>
-        <br />
-        <br />
-        <a href="https://github.com/dduraipandian/object_pool/">Source Code</a>
-        ·
-        <a href="https://github.com/dduraipandian/object_pool/issues">Report Bug</a>
-        ·
-        <a href="https://github.com/dduraipandian/object_pool/issues">Request Feature</a>
-      </p>
-    </p>
+.. image:: https://codecov.io/gh/dduraipandian/object_pool/branch/master/graph/badge.svg?token=2JrmTQ7smU
+  :target: https://codecov.io/gh/dduraipandian/object_pool
+  :alt: codecov test coverage
 
-.. raw:: html
+.. image:: https://img.shields.io/badge/License-MIT-blue.svg
+  :target: https://opensource.org/licenses/MIT
+  :alt: MIT License
 
-    <hr/>
+.. image:: https://readthedocs.org/projects/object-pool/badge/?version=latest
+    :target: https://object-pool.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
-    <p align="center">
-      <p align="center">
-        <a href="https://travis-ci.com/dduraipandian/object_pool">
-            <img src="https://travis-ci.com/dduraipandian/object_pool.svg?token=HYyTsSU9ynxiqecjxoc5&branch=master" alt='Travis CI'>
-        </a>
 
-        <a href="https://codecov.io/gh/dduraipandian/object_pool">
-            <img src="https://codecov.io/gh/dduraipandian/object_pool/branch/master/graph/badge.svg?token=2JrmTQ7smU" alt='codecov test coverage'>
-        </a>
+ObjectPool
+----------
+- `Explore the docs » <https://object-pool.readthedocs.io>`_
+- `Source Code » <https://github.com/dduraipandian/object_pool/>`_
+- `Report Bug » <https://github.com/dduraipandian/object_pool/issues>`_
+- `Request Feature » <https://github.com/dduraipandian/object_pool/issues/>`_
 
-        <a href="https://opensource.org/licenses/MIT">
-            <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt='MIT License'>
-        </a>
-
-        <a href='https://object-pool.readthedocs.io/en/latest/?badge=latest'>
-            <img src='https://readthedocs.org/projects/object-pool/badge/?version=latest'
-            alt='Documentation Status' />
-        </a>
-      </p>
-    </p>
-
-   <hr/>
 
 .. contents:: Table of contents
     :local:
-
-.. raw:: html
-
-   <hr/>
 
 Object Pool
 ===========
