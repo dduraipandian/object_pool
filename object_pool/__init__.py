@@ -4,7 +4,7 @@
 
 """
 
-__version__ = "1.0"
+__version__ = "1.1"
 __author__ = 'Durai Pandian'
 __contact__ = 'dduraipandian@gmail.com'
 __docformat__ = 'restructuredtext'
