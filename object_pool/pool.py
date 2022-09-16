@@ -9,9 +9,13 @@
 
 import datetime
 from copy import deepcopy
+import logging
 from queue import Queue
 from .exception import InvalidMinInitCapacity, InvalidMaxCapacity, InvalidClass
 from .singleton_meta import SingletonMetaPoolRegistry
+
+
+logger = logging.getLogger(__name__)
 
 
 class ObjectPool(metaclass=SingletonMetaPoolRegistry):
@@ -137,15 +141,15 @@ class ObjectPool(metaclass=SingletonMetaPoolRegistry):
             raise InvalidMaxCapacity(self.pool_name)
 
         if self.max_capacity == 0:
-            print(f'INFO:: {self.pool_name} Pool will have unlimited resources.')
+            logger.info(f'{self.pool_name} Pool will have unlimited resources.')
 
         if self.expire_in_secs == 0:
-            print(f'INFO:: {self.pool_name} Resources does not expire.')
+            logger.info(f'{self.pool_name} Resources does not expire.')
 
         if not klass_cleanup:
-            print(f'WARNING:: {self.pool_name} does not have cleanup method. '
-                  f'If destroy method is called, clean up such as closing connection '
-                  f'will not be performed. Thus will lead to system performance.')
+            logger.warning(f'{self.pool_name} does not have cleanup method. '
+                           f'If destroy method is called, clean up such as closing connection '
+                           f'will not be performed. Thus will lead to system performance.')
 
         if self.__cloning:
             self.__reserved_resource = self.klass()
@@ -153,9 +157,9 @@ class ObjectPool(metaclass=SingletonMetaPoolRegistry):
         if not lazy:
             self.__create_init_pool()
         else:
-            print(f'INFO:: {self.pool_name}: pool items will be created on request.')
+            logger.info(f'{self.pool_name}: pool items will be created on request.')
 
-        print(f'INFO:: {self.pool_name}: {self.get_pool_size()} pool items are created.')
+        logger.info(f'{self.pool_name}: {self.get_pool_size()} pool items are created.')
 
     def get(self):
         """
@@ -276,7 +280,8 @@ class ObjectPool(metaclass=SingletonMetaPoolRegistry):
 
         if not is_pool_full:
             if self.post_check:
-                resource, resource_stats = self.__check_and_get_resource(resource, resource_stats)
+                resource, resource_stats = self.__check_and_get_resource(
+                    resource, resource_stats)
 
             self.__pool.put((resource, resource_stats))
         else:
@@ -292,11 +297,11 @@ class ObjectPool(metaclass=SingletonMetaPoolRegistry):
         expired_by_time = self._is_expired_by_time(created_at)
 
         if expired_by_max_reuse:
-            print("resource expired by usage count.")
+            logger.info("resource expired by usage count.")
             return True
 
         if expired_by_time:
-            print("resource expired by usage time.")
+            logger.info("resource expired by usage time.")
             return True
 
         return False
@@ -316,7 +321,8 @@ class ObjectPool(metaclass=SingletonMetaPoolRegistry):
         """provides expiring time of resource based on **expire_in_secs**"""
 
         if created_at:
-            expires_at = created_at + datetime.timedelta(seconds=self.expire_in_secs)
+            expires_at = created_at + \
+                datetime.timedelta(seconds=self.expire_in_secs)
         else:
             expires_at = datetime.datetime.now()
 
@@ -369,10 +375,13 @@ class ObjectPool(metaclass=SingletonMetaPoolRegistry):
             -   new - is updated after the time time use or recreated.
         """
         resource_stats = self.__update_resource_stats(resource_stats)
-        invalid_resource = self.__check_func(resource, **resource_stats) if callable(self.__check_func) else False
-        invalid_resource_internal = self._internal_invalid_check(**resource_stats)
+        invalid_resource = self.__check_func(
+            resource, **resource_stats) if callable(self.__check_func) else False
+        invalid_resource_internal = self._internal_invalid_check(
+            **resource_stats)
         if invalid_resource or invalid_resource_internal:
-            resource, resource_stats = self.__cleanup_and_get_resource(resource, resource_stats)
+            resource, resource_stats = self.__cleanup_and_get_resource(
+                resource, resource_stats)
 
         return resource, resource_stats
 
